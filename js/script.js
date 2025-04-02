@@ -5,6 +5,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     document.querySelector(this.getAttribute('href')).scrollIntoView({
       behavior: 'smooth'
     });
+    // Close the menu on mobile after clicking a link
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.remove('active');
   });
 });
 
@@ -52,4 +55,12 @@ ScrollReveal().reveal('.reveal', {
   interval: 200,
   scale: 0.9,
   reset: true
+});
+
+// Hamburger Menu Toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
 });

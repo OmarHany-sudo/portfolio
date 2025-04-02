@@ -31,7 +31,7 @@ body {
 .container {
   max-width: 80%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 /* Navigation */
@@ -44,7 +44,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 10%;
+  padding: 1rem 5%;
 }
 
 .nav-logo {
@@ -58,16 +58,32 @@ nav {
   transform: scale(1.1);
 }
 
-nav ul {
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  background: #FFFFFF;
+  height: 3px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.nav-links {
   display: flex;
   list-style: none;
 }
 
-nav ul li {
+.nav-links li {
   margin: 0 1.5rem;
 }
 
-nav ul li a {
+.nav-links li a {
   color: #FFFFFF;
   text-decoration: none;
   font-size: 1rem;
@@ -76,7 +92,7 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 
-nav ul li a::after {
+.nav-links li a::after {
   content: '';
   position: absolute;
   width: 0;
@@ -87,11 +103,11 @@ nav ul li a::after {
   transition: width 0.3s ease;
 }
 
-nav ul li a:hover::after {
+.nav-links li a:hover::after {
   width: 100%;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover {
   color: #3B82F6;
 }
 
@@ -117,6 +133,7 @@ nav ul li a:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 2rem;
 }
 
 .hero-content {
@@ -140,7 +157,7 @@ nav ul li a:hover {
 }
 
 .hero-content h1 {
-  font-size: 8rem;
+  font-size: 6rem;
   font-weight: 700;
   color: #3B82F6;
   text-transform: uppercase;
@@ -158,7 +175,7 @@ nav ul li a:hover {
 
 /* About Section */
 .about {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .about-content {
@@ -206,7 +223,7 @@ nav ul li a:hover {
 
 /* Gallery Section (Projects) */
 .gallery {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .gallery-grid {
@@ -217,6 +234,7 @@ nav ul li a:hover {
 
 .gallery-item {
   text-align: center;
+  flex: 1;
 }
 
 .gallery-number {
@@ -244,7 +262,7 @@ nav ul li a:hover {
 
 /* Process Section (Skills) */
 .process {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .process-grid {
@@ -256,6 +274,7 @@ nav ul li a:hover {
 
 .process-item {
   text-align: center;
+  flex: 1;
 }
 
 .process-circle {
@@ -293,7 +312,7 @@ nav ul li a:hover {
 
 /* Tickets Section (Experience) */
 .tickets {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .tickets-grid {
@@ -330,7 +349,7 @@ nav ul li a:hover {
 
 /* Facts Section */
 .facts {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .facts-grid {
@@ -371,7 +390,7 @@ nav ul li a:hover {
 
 /* News Section */
 .news {
-  padding: 6rem 0;
+  padding: 4rem 0;
 }
 
 .news-grid {
@@ -409,12 +428,12 @@ nav ul li a:hover {
 
 /* Footer (Contact) */
 .footer {
-  padding: 6rem 0;
+  padding: 4rem 0;
   text-align: center;
 }
 
 .footer h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #3B82F6;
   margin-bottom: 2rem;
   transition: transform 0.3s ease;
@@ -529,7 +548,7 @@ nav ul li a:hover {
 
 /* Section Titles */
 h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #3B82F6;
   font-weight: 700;
   text-align: center;
@@ -566,16 +585,152 @@ h2:hover::after {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .container { max-width: 90%; }
-  .hero-content h1 { font-size: 4rem; }
-  .hero-content p { font-size: 1.2rem; }
-  .hero-content img { width: 200px; height: 200px; }
-  .about-content, .gallery-grid, .process-grid, .tickets-grid, .facts-grid, .news-grid {
+@media (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: 4.5rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .hero-content p {
+    font-size: 1.3rem;
+  }
+
+  .hero-content img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-content {
     flex-direction: column;
     align-items: center;
   }
-  nav { flex-direction: column; padding: 1rem; }
-  nav ul { margin: 1rem 0; }
-  nav ul li { margin: 0 1rem; }
+
+  .gallery-grid, .process-grid, .tickets-grid, .facts-grid, .news-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-item, .process-item, .ticket-card, .news-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    padding: 0 1rem;
+  }
+
+  nav {
+    padding: 1rem 3%;
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0.5rem 0;
+  }
+
+  .nav-cta {
+    margin-top: 1rem;
+  }
+
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .hero-content img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about, .gallery, .process, .tickets, .facts, .news, .footer {
+    padding: 2rem 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .footer h2 {
+    font-size: 2rem;
+  }
+
+  .footer input, .footer textarea {
+    padding: 0.8rem;
+  }
+
+  .footer button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero-content img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .nav-logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-cta {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .footer h2 {
+    font-size: 1.8rem;
+  }
+
+  .footer p {
+    font-size: 0.9rem;
+  }
+
+  .social-links a {
+    font-size: 1rem;
+  }
 }
