@@ -1,13 +1,16 @@
 // Smooth scrolling for nav links and CTA buttons
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href*="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-    // Close the menu on mobile after clicking a link
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.remove('active');
+    // Check if the link is an internal anchor link (contains #)
+    if (this.getAttribute('href').includes('#') && (window.location.pathname === '/index.html' || window.location.pathname === '/')) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+      // Close the menu on mobile after clicking a link
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.remove('active');
+    }
   });
 });
 
@@ -28,23 +31,25 @@ if (contactForm) {
   });
 }
 
-// Typewriter Effect for Hero Title
-const typewriterElement = document.querySelector('.typewriter');
-const text = typewriterElement.textContent;
-typewriterElement.textContent = '';
-let i = 0;
+// Typewriter Effect for Hero Title (only on index.html)
+if (document.querySelector('.typewriter')) {
+  const typewriterElement = document.querySelector('.typewriter');
+  const text = typewriterElement.textContent;
+  typewriterElement.textContent = '';
+  let i = 0;
 
-function typeWriter() {
-  if (i < text.length) {
-    typewriterElement.textContent += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 100);
-  } else {
-    typewriterElement.style.borderRight = 'none';
+  function typeWriter() {
+    if (i < text.length) {
+      typewriterElement.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 100);
+    } else {
+      typewriterElement.style.borderRight = 'none';
+    }
   }
-}
 
-window.addEventListener('load', typeWriter);
+  window.addEventListener('load', typeWriter);
+}
 
 // ScrollReveal Animations
 ScrollReveal().reveal('.reveal', {
@@ -54,7 +59,7 @@ ScrollReveal().reveal('.reveal', {
   origin: 'bottom',
   interval: 200,
   scale: 0.9,
-  reset: true
+  reset: false
 });
 
 // Hamburger Menu Toggle
